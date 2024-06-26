@@ -33,15 +33,13 @@ export class QuizListComponent {
     console.log(this.lessonData);
       
   }
-  getStudentName(studentNo: number): string {
+  getStudentName(studentNo: number): { name: string, isNotFound: boolean } {
     const student = this.studentData.find(s => s.studentNo == studentNo);
-    
-    return student ? student.studentName + ' ' + student.studentSurname : 'Şagird tapılmadı';
+    return student ? { name: student.studentName + ' ' + student.studentSurname, isNotFound: false } : { name: 'Şagird tapılmadı', isNotFound: true };
   }
-  getLessonName(lessonNo: string): string {
-    const lesson = this.lessonData.find(s => s.lessonCode == lessonNo);
-    
-    return lesson ? lesson.lessonName  : 'Dərs tapılmadı';
+  getLessonName(lessonCode: string): { name: string, isNotFound: boolean } {
+    const lesson = this.lessonData.find(s => s.lessonCode == lessonCode);
+    return lesson ? { name: lesson.lessonName, isNotFound: false } : { name: 'Dərs tapılmadı', isNotFound: true };
   }
   addQuiz() {
     const newQuiz = {
