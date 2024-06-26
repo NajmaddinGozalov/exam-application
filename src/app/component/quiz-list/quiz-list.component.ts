@@ -50,13 +50,13 @@ export class QuizListComponent {
     };
 
     this.quizService.addData(newQuiz);
-    this.quizData = this.quizService.getData(); // Tabloyu güncelle
-    this.resetForm(); // Formu temizle
+    this.quizData = this.quizService.getData(); 
+    this.resetForm(); 
   }
 
   removeQuiz(quiz: QuizOption) {
     this.quizService.removeData(quiz);
-    this.quizData = this.quizService.getData(); // Tabloyu güncelle
+    this.quizData = this.quizService.getData(); 
   }
   resetForm() {
     this.lessonCode = '';

@@ -35,13 +35,13 @@ export class LessonsComponent implements OnInit {
     };
 
     this.lessonsService.addData(newLesson);
-    this.data = this.lessonsService.getData(); // Tabloyu güncelle
-    this.resetForm(); // Formu temizle
+    this.data = this.lessonsService.getData(); 
+    this.resetForm(); 
   }
   
   removeLesson(lesson: any) {
     this.lessonsService.removeData(lesson);
-    this.data = this.lessonsService.getData(); // Tabloyu güncelle
+    this.data = this.lessonsService.getData(); 
   }
   resetForm() {
     this.lessonCode = '';
