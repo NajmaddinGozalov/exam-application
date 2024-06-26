@@ -6,8 +6,14 @@ export interface LessonOption {
     teacherSurname: string
 }
 export interface StudentOption {
-    studentNo: string;
+    studentNo: number;
     studentName: string;
     studentSurname: string;
-    classNo: string;
+    classNo: number;
+}
+export interface QuizOption {
+    lessonCode: string;
+    studentNo: number;
+    quizDate: Date;
+    score: string;
 }

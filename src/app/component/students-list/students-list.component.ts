@@ -15,10 +15,10 @@ export class StudentsListComponent {
 
   studentsData: StudentOption[] = [];
 
-  studentNo: string = '';
+  studentNo: number = null;
   studentName: string = '';
   studentSurname: string = '';
-  classNo: string = '';
+  classNo: number = null;
   constructor(private studentsService: StudentsService) {
 
   };
@@ -34,18 +34,18 @@ export class StudentsListComponent {
     };
 
     this.studentsService.addData(newStudent);
-    this.studentsData = this.studentsService.getData(); // Tabloyu güncelle
-    this.resetForm(); // Formu temizle
+    this.studentsData = this.studentsService.getData(); 
+    this.resetForm(); 
   }
   
-  removeStudent(lesson: any) {
+  removeStudent(lesson: StudentOption) {
     this.studentsService.removeData(lesson);
-    this.studentsData = this.studentsService.getData(); // Tabloyu güncelle
+    this.studentsData = this.studentsService.getData(); 
   }
   resetForm() {
-    this.studentNo = '';
+    this.studentNo = null;
     this.studentName = '';
     this.studentSurname = '';
-    this.classNo = '';
+    this.classNo = null;
   }
 }
