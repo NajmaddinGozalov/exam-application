@@ -36,12 +36,12 @@ export class QuizListComponent {
   getStudentName(studentNo: number): string {
     const student = this.studentData.find(s => s.studentNo == studentNo);
     
-    return student ? student.studentName + ' ' + student.studentSurname : '';
+    return student ? student.studentName + ' ' + student.studentSurname : 'Şagird tapılmadı';
   }
   getLessonName(lessonNo: string): string {
     const lesson = this.lessonData.find(s => s.lessonCode == lessonNo);
     
-    return lesson ? lesson.lessonName  : '';
+    return lesson ? lesson.lessonName  : 'Dərs tapılmadı';
   }
   addQuiz() {
     const newQuiz = {
