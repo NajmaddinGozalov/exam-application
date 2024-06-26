@@ -6,9 +6,10 @@ import { LessonOption } from './global.type';
 })
 
 export class LessonsService {
-    
+
     private storageKey = 'lessonsData';
-     data: LessonOption[] =this.loadFromLocalStorage() || [{
+    
+    data: LessonOption[] = this.loadFromLocalStorage() || [{
         lessonCode: '596',
         lessonName: 'tarix',
         classNo: 5,

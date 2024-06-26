@@ -5,3 +5,9 @@ export interface LessonOption {
     teacherName: string;
     teacherSurname: string
 }
+export interface StudentOption {
+    studentNo: string;
+    studentName: string;
+    studentSurname: string;
+    classNo: string;
+}
