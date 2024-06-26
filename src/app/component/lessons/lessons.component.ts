@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LessonsService } from '../../services/lessons.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LessonOption } from '../../services/global.type';
 
 @Component({
   selector: 'app-quiz-list',
@@ -11,14 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './lessons.component.scss'
 })
 export class LessonsComponent implements OnInit {
-  data: {
-    lessonCode: string;
-    lessonName: string;
-    classNo: number;
-    teacherName: string;
-    teacherSurname: string
-  }[] = []
-
+  data: LessonOption[] = []
   lessonCode: string = '';
   lessonName: string = '';
   classNo: number | null = null;
@@ -26,7 +20,7 @@ export class LessonsComponent implements OnInit {
   teacherSurname: string = '';
 
   constructor(private lessonsService: LessonsService) {
-    
+
    }
   ngOnInit(): void {
     this.data = this.lessonsService.getData();
@@ -43,6 +37,11 @@ export class LessonsComponent implements OnInit {
     this.lessonsService.addData(newLesson);
     this.data = this.lessonsService.getData(); // Tabloyu güncelle
     this.resetForm(); // Formu temizle
+  }
+  
+  removeLesson(lesson: any) {
+    this.lessonsService.removeData(lesson);
+    this.data = this.lessonsService.getData(); // Tabloyu güncelle
   }
   resetForm() {
     this.lessonCode = '';

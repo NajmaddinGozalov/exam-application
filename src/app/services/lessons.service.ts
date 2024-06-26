@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
+import { LessonOption } from './global.type';
 
 @Injectable({
     providedIn: 'root'
 })
+
 export class LessonsService {
-     data: {
-        lessonCode: string;
-        lessonName: string;
-        classNo: number;
-        teacherName: string;
-        teacherSurname: string
-    }[] = [{
+    
+    private storageKey = 'lessonsData';
+     data: LessonOption[] =this.loadFromLocalStorage() || [{
         lessonCode: '596',
         lessonName: 'tarix',
         classNo: 5,
@@ -26,8 +24,23 @@ export class LessonsService {
         return this.data;
     }
 
-    addData(item: any) {
+    addData(item: LessonOption) {
         this.data.push(item);
+        this.saveToLocalStorage();
+    };
+    removeData(item: LessonOption) {
+        const index = this.data.indexOf(item);
+        if (index > -1) {
+            this.data.splice(index, 1);
+            this.saveToLocalStorage();
+        }
+    }
+    private saveToLocalStorage() {
+        localStorage.setItem(this.storageKey, JSON.stringify(this.data));
+    }
+    private loadFromLocalStorage() {
+        const data = localStorage.getItem(this.storageKey);
+        return data ? JSON.parse(data) : null;
     }
 }
 

@@ -19,7 +19,7 @@
             <button class="btn btn-primary" (click)="addLesson()">Save</button>
           </div>
     </div>
-    <table class="table">
+    <table class="table mt-4">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -38,6 +38,9 @@
                 <td>{{ lesson.classNo }}</td>
                 <td>{{ lesson.teacherName }}</td>
                 <td>{{ lesson.teacherSurname }}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" (click)="removeLesson(lesson)">Sil</button>
+                </td>
             </tr>
             
         </tbody>
