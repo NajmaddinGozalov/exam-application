@@ -8,14 +8,8 @@ import { LessonOption } from './global.type';
 export class LessonsService {
 
     private storageKey = 'lessonsData';
-    
-    data: LessonOption[] = this.loadFromLocalStorage() || [{
-        lessonCode: '596',
-        lessonName: 'tarix',
-        classNo: 5,
-        teacherName: 'Kenan',
-        teacherSurname: 'Kenanov'
-    }];
+
+    data: LessonOption[] = this.loadFromLocalStorage() || [];
 
     constructor() {
 

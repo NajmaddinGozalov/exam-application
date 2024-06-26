@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { QuizOption } from '../../services/global.type';
+import { LessonOption, QuizOption, StudentOption } from '../../services/global.type';
 import { QuizService } from '../../services/quiz.service';
+import { StudentsService } from '../../services/students.service';
+import { LessonsService } from '../../services/lessons.service';
 
 @Component({
   selector: 'app-quiz-list',
@@ -12,16 +14,34 @@ import { QuizService } from '../../services/quiz.service';
   styleUrl: './quiz-list.component.scss'
 })
 export class QuizListComponent {
+
   quizData: QuizOption[] = [];
+  studentData: StudentOption[] = [];
+  lessonData: LessonOption[] = [];
 
   lessonCode: string = '';
   studentNo: number = null
   quizDate: Date = null;
   score: string = '';
 
-  constructor(private quizService: QuizService) { };
+  
+  constructor(private quizService: QuizService ,private studentService: StudentsService ,private lessonService: LessonsService) { };
   ngOnInit(): void {
     this.quizData = this.quizService.getData();
+    this.studentData = this.studentService.getData();    
+    this.lessonData = this.lessonService.getData();  
+    console.log(this.lessonData);
+      
+  }
+  getStudentName(studentNo: number): string {
+    const student = this.studentData.find(s => s.studentNo == studentNo);
+    
+    return student ? student.studentName + ' ' + student.studentSurname : '';
+  }
+  getLessonName(lessonNo: string): string {
+    const lesson = this.lessonData.find(s => s.lessonCode == lessonNo);
+    
+    return lesson ? lesson.lessonName  : '';
   }
   addQuiz() {
     const newQuiz = {
@@ -46,4 +66,5 @@ export class QuizListComponent {
     this.quizDate = null;
     this.score = '';
   }
+
 }

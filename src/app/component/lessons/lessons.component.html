@@ -12,34 +12,34 @@
           <div class="col-lg-2">
             <input type="text" class="form-control" [(ngModel)]="teacherName" placeholder="Məllim adı">
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-2">
             <input type="text" class="form-control" [(ngModel)]="teacherSurname" placeholder="Məllim soyadı">
           </div>
-          <div class="col-lg-1">
-            <button class="btn btn-primary" (click)="addLesson()">Save</button>
+          <div class="col-lg-2">
+            <button class="btn btn-primary" (click)="addLesson()">Əlavə et</button>
           </div>
     </div>
     <table class="table mt-4">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Dərsin kodu</th>
-                <th scope="col">Dərsin adı</th>
-                <th scope="col">Sinif nömrəsi</th>
-                <th scope="col">Məllim adı</th>
-                <th scope="col">Məllim soyadı</th>
-                <th scope="col">X</th>
+                <th class="text-center" scope="col">#</th>
+                <th class="text-center" scope="col">Dərsin kodu</th>
+                <th class="text-center" scope="col">Dərsin adı</th>
+                <th class="text-center" scope="col">Sinif nömrəsi</th>
+                <th class="text-center" scope="col">Məllim adı</th>
+                <th class="text-center" scope="col">Məllim soyadı</th>
+                <th class="text-center" scope="col">X</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let lesson of data; let i = index">
-                <td>{{ i + 1 }}</td>
-                <td>{{ lesson.lessonCode }}</td>
-                <td>{{ lesson.lessonName }}</td>
-                <td>{{ lesson.classNo }}</td>
-                <td>{{ lesson.teacherName }}</td>
-                <td>{{ lesson.teacherSurname }}</td>
-                <td>
+                <td  class="text-center">{{ i + 1 }}</td>
+                <td  class="text-center">{{ lesson.lessonCode }}</td>
+                <td  class="text-center">{{ lesson.lessonName }}</td>
+                <td  class="text-center">{{ lesson.classNo }}</td>
+                <td  class="text-center">{{ lesson.teacherName }}</td>
+                <td  class="text-center">{{ lesson.teacherSurname }}</td>
+                <td  class="text-center">
                     <button class="btn btn-danger btn-sm" (click)="removeLesson(lesson)">Sil</button>
                 </td>
             </tr>
