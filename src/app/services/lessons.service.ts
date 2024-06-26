@@ -4,15 +4,23 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class LessonsService {
-    private data: {
-        dersKodu: string;
-        dersAdi: string;
-        sinifNumarasi: number;
-        mellimAdi: string;
-        mellimSoyadi: string    
-    }[] = [];
+     data: {
+        lessonCode: string;
+        lessonName: string;
+        classNo: number;
+        teacherName: string;
+        teacherSurname: string
+    }[] = [{
+        lessonCode: '596',
+        lessonName: 'tarix',
+        classNo: 5,
+        teacherName: 'Kenan',
+        teacherSurname: 'Kenanov'
+    }];
 
-    constructor() { }
+    constructor() {
+
+    }
 
     getData() {
         return this.data;
