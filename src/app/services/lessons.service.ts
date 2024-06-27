@@ -11,9 +11,7 @@ export class LessonsService {
 
     data: LessonOption[] = this.loadFromLocalStorage() || [];
 
-    constructor() {
-
-    }
+    constructor() {}
 
     getData() {
         return this.data;

@@ -3,6 +3,7 @@ import { StudentOption } from '../../services/global.type';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StudentsService } from '../../services/students.service';
+import { makeId } from '../../services/makeId';
 
 @Component({
   selector: 'app-quiz-list',
@@ -30,7 +31,8 @@ export class StudentsListComponent {
       studentNo: this.studentNo,
       studentName: this.studentName,
       studentSurname: this.studentSurname,
-      classNo: this.classNo
+      classNo: this.classNo,
+      id:makeId()
     };
 
     this.studentsService.addData(newStudent);

@@ -19,28 +19,38 @@ export class QuizListComponent {
   studentData: StudentOption[] = [];
   lessonData: LessonOption[] = [];
 
-  lessonCode: string = '';
+  lessonCode: number = null;
   studentNo: number = null
   quizDate: Date = null;
   score: string = '';
 
-  
-  constructor(private quizService: QuizService ,private studentService: StudentsService ,private lessonService: LessonsService) { };
+
+  constructor(private quizService: QuizService, private studentService: StudentsService, private lessonService: LessonsService) { };
   ngOnInit(): void {
     this.quizData = this.quizService.getData();
-    this.studentData = this.studentService.getData();    
-    this.lessonData = this.lessonService.getData();  
-    console.log(this.lessonData);
-      
+    this.studentData = this.studentService.getData();
+    this.lessonData = this.lessonService.getData();
+
+
   }
   getStudentName(studentNo: number): { name: string, isNotFound: boolean } {
-    const student = this.studentData.find(s => s.studentNo == studentNo);
+    const student = this.studentData.find(s => s.id == studentNo);
     return student ? { name: student.studentName + ' ' + student.studentSurname, isNotFound: false } : { name: 'Şagird tapılmadı', isNotFound: true };
   }
-  getLessonName(lessonCode: string): { name: string, isNotFound: boolean } {
-    const lesson = this.lessonData.find(s => s.lessonCode == lessonCode);
+
+  getLessonName(lessonCode: number): { name: string, isNotFound: boolean } {
+    const lesson = this.lessonData.find(s => s.id == lessonCode);
     return lesson ? { name: lesson.lessonName, isNotFound: false } : { name: 'Dərs tapılmadı', isNotFound: true };
   }
+  getStudentCode(studentNo: number) {
+    const student = this.studentData.find(s => s.id == studentNo);
+    return student.studentNo
+  }
+  getLessonCode(lessonCode: number) {
+    const lesson = this.lessonData.find(s => s.id == lessonCode);
+    return lesson.lessonCode
+  }
+
   addQuiz() {
     const newQuiz = {
       lessonCode: this.lessonCode,
@@ -50,16 +60,16 @@ export class QuizListComponent {
     };
 
     this.quizService.addData(newQuiz);
-    this.quizData = this.quizService.getData(); 
-    this.resetForm(); 
+    this.quizData = this.quizService.getData();
+    this.resetForm();
   }
 
   removeQuiz(quiz: QuizOption) {
     this.quizService.removeData(quiz);
-    this.quizData = this.quizService.getData(); 
+    this.quizData = this.quizService.getData();
   }
   resetForm() {
-    this.lessonCode = '';
+    this.lessonCode = null;
     this.studentNo = null;
     this.quizDate = null;
     this.score = '';

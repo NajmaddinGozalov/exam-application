@@ -2,16 +2,29 @@
   <h5 class="">İmtahan siyahısı</h5>
   <div class="row mb-3">
     <div class="col-lg-3">
-      <input type="text" class="form-control" [(ngModel)]="lessonCode" placeholder="Dərsin kodu" maxlength="3">
+      <label for="lessonCodeSelect">Dərsin kodu</label>
+      <select id="lessonCodeSelect" class="form-select" aria-label="Default select example" [(ngModel)]="lessonCode">
+        <option *ngFor="let lesson of lessonData" [value]="lesson.id">
+          {{ lesson.lessonName }} ({{ lesson.lessonCode }})
+        </option>
+      </select>
     </div>
     <div class="col-lg-3">
-      <input type="number" class="form-control" [(ngModel)]="studentNo" placeholder="Şagirdin nömrəsi">
+      <label for="studentSelect">Şagirdlər</label>
+      <select id="studentSelect" class="form-select" aria-label="Default select example" [(ngModel)]="studentNo">
+        <option *ngFor="let student of studentData" [value]="student.id">
+          {{ student.studentName }} ({{ student.studentNo }})
+        </option>
+      </select>
     </div>
     <div class="col-lg-2">
-      <input type="datetime-local" class="form-control" [(ngModel)]="quizDate" placeholder="imtahan tarixi">
+      <label for="quizDate">İmtahan tarixi</label>
+      <input id="quizDate" type="datetime-local" class="form-control" [(ngModel)]="quizDate"
+        placeholder="imtahan tarixi">
     </div>
     <div class="col-lg-2">
-      <input type="text" class="form-control" [(ngModel)]="score" placeholder="Qiymət">
+      <label for="score">Qiymət</label>
+      <input id="score" type="text" class="form-control" [(ngModel)]="score" placeholder="">
     </div>
 
     <div class="col-lg-2 d-flex justify-content-end">
@@ -38,11 +51,11 @@
         <td class="text-center" [ngClass]="{'text-danger': getStudentName(lesson.studentNo).isNotFound}">
           {{ getStudentName(lesson.studentNo).name }}
         </td>
-        <td class="text-center">{{ lesson.studentNo }}</td>
+        <td class="text-center">{{ getStudentCode(lesson.studentNo) }}</td>
         <td class="text-center" [ngClass]="{'text-danger': getLessonName(lesson.lessonCode).isNotFound}">
           {{ getLessonName(lesson.lessonCode).name }}
         </td>
-        <td class="text-center">{{ lesson.lessonCode }}</td>
+        <td class="text-center"> {{ getLessonCode(lesson.lessonCode) }}</td>
         <td class="text-center">{{ lesson.quizDate }}</td>
         <td class="text-center">{{ lesson.score }}</td>
         <td class="text-center">

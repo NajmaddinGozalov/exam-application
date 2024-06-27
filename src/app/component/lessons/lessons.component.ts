@@ -3,6 +3,7 @@ import { LessonsService } from '../../services/lessons.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LessonOption } from '../../services/global.type';
+import { makeId } from '../../services/makeId';
 
 @Component({
   selector: 'app-quiz-list',
@@ -13,7 +14,7 @@ import { LessonOption } from '../../services/global.type';
 })
 export class LessonsComponent implements OnInit {
   data: LessonOption[] = []
-  lessonCode: string = '';
+  lessonCode: number = null;
   lessonName: string = '';
   classNo: number | null = null;
   teacherName: string = '';
@@ -21,33 +22,36 @@ export class LessonsComponent implements OnInit {
 
   constructor(private lessonsService: LessonsService) {
 
-   }
+  }
   ngOnInit(): void {
     this.data = this.lessonsService.getData();
-  }
+  };
+
   addLesson() {
     const newLesson = {
       lessonCode: this.lessonCode,
       lessonName: this.lessonName,
       classNo: this.classNo,
       teacherName: this.teacherName,
-      teacherSurname: this.teacherSurname
+      teacherSurname: this.teacherSurname,
+      id: makeId()
     };
 
     this.lessonsService.addData(newLesson);
-    this.data = this.lessonsService.getData(); 
-    this.resetForm(); 
+    this.data = this.lessonsService.getData();
+    this.resetForm();
   }
-  
+
   removeLesson(lesson: any) {
     this.lessonsService.removeData(lesson);
-    this.data = this.lessonsService.getData(); 
+    this.data = this.lessonsService.getData();
   }
   resetForm() {
-    this.lessonCode = '';
+    this.lessonCode = null;
     this.lessonName = '';
     this.classNo = null;
     this.teacherName = '';
     this.teacherSurname = '';
-  }
+  };
+
 }
